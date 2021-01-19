@@ -49,7 +49,7 @@ namespace Travel.Controllers
             _db.SaveChanges();
         }
 
-        // Get api/destination/id
+        // GET api/destination/id
         [HttpGet("{id}")]
         public ActionResult<Destination> Get(int id)
         {
