@@ -1,0 +1,18 @@
+@* @{
+    Layout = "_Layout";
+}
+@model TravelClient.Models.Destina
+
+<h3>Edit flavor info for: @Html.DisplayFor(model => model.FlavorName)</h3>
+<hr />
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.FlavorId)
+    @Html.Label("Flavor name:")
+    @Html.EditorFor(model => model.FlavorName,
+        new {@required="required"})
+
+    <input type="submit" value="Save Changes" />
+}
+
+<p>@Html.ActionLink("Back to populants of FlavorTown", "Index", null, null, new {@class="btn btn-light btn-sm"})</p> *@
