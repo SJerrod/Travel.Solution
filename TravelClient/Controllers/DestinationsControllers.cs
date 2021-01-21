@@ -11,55 +11,59 @@ using Microsoft.EntityFrameworkCore;
 
 namespace TravelClient.Controllers
 {
-    public class DestinationsController : Controller
+  public class DestinationsController : Controller
+  {
+
+    public IActionResult Index()
     {
-
-        public IActionResult Index()
-        {
-            var allDestinations = Destination.GetDestinations();
-            return View(allDestinations);
-        }
-
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult Create(Destination destination)
-        {
-            _db.Destinations.Add(destination);
-            _db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        public ActionResult Edit(int id)
-        {
-            var thisDestination = _db.Destinations.FirstOrDefault(destination => destination.DestinationId == id);
-            return View(thisDestination);
-        }
-
-        [HttpPost]
-        public ActionResult Edit(Destination destination)
-        {
-            _db.Entry(destination).State = EntityState.Modified; 
-            _db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        public ActionResult Delete(int id)
-        {
-            var thisDestination = _db.Destinations.FirstOrDefault(destination => destination.DestinationId == id);
-            return View(thisDestination);
-        }
-
-        [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            var thisDestination = _db.Destinations.FirstOrDefault(destination => destination.DestinationId == id);
-            _db.Destinations.Remove(thisDestination);
-            _db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+      var allDestinations = Destination.GetDestinations();
+      return View(allDestinations);
     }
+
+    public IActionResult Details(int id)
+    {
+      var thisDestination = Destination.GetDetails(id);
+      return View(thisDestination);
+    }
+
+    public IActionResult Create()
+    {
+      return View();
+    }
+
+    [HttpPost]
+    public IActionResult Create(Destination destination)
+    {
+      Destination.Post(destination);
+      return RedirectToAction("Index");
+    }
+
+    public IActionResult Edit(int id)
+    {
+      var thisDestination = Destination.GetDetails(id);
+      return View(thisDestination);
+    }
+
+    [HttpPost]
+    public IActionResult Edit(Destination destination)
+    {
+      Destination.Put(destination);
+      return RedirectToAction("Index");
+    }
+
+    public IActionResult Delete(int id)
+    {
+      Destination.Delete(id);
+      return RedirectToAction("Index");
+    }
+
+    // [HttpPost, ActionName("Delete")]
+    // public IActionResult DeleteConfirmed(int id)
+    // {
+    //     var thisDestination = Destination.FirstOrDefault(destination => destination.DestinationId == id);
+    //     Destination.Remove(thisDestination);
+    //     SaveChanges();
+    //     return RedirectToAction("Index");
+    // }
+  }
 }
