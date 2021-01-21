@@ -1,18 +1,31 @@
-@* @{
+@{
     Layout = "_Layout";
 }
-@model TravelClient.Models.Destina
+@model TravelClient.Models.Destination
 
-<h3>Edit flavor info for: @Html.DisplayFor(model => model.FlavorName)</h3>
+<h3>Edit destination info for: @Html.DisplayFor(model => model.Country)</h3>
 <hr />
 @using (Html.BeginForm())
 {
-    @Html.HiddenFor(model => model.FlavorId)
-    @Html.Label("Flavor name:")
-    @Html.EditorFor(model => model.FlavorName,
+    @Html.HiddenFor(model => model.DestinationId)
+
+    @Html.Label("Country name:")
+    @Html.EditorFor(model => model.Country,
+        new {@required="required"})
+    @Html.Label("City name:")
+    @Html.EditorFor(model => model.City,
+        new {@required="required"})
+    @Html.Label("Rating:")
+    @Html.EditorFor(model => model.Rating,
+        new {@required="required"})
+    @Html.Label("Review:")
+    @Html.EditorFor(model => model.Review,
+        new {@required="required"})
+    @Html.Label("Date:")
+    @Html.EditorFor(model => model.Date,
         new {@required="required"})
 
     <input type="submit" value="Save Changes" />
 }
 
-<p>@Html.ActionLink("Back to populants of FlavorTown", "Index", null, null, new {@class="btn btn-light btn-sm"})</p> *@
+<p>@Html.ActionLink("Back to destinations.", "Index", new {@class="btn btn-light btn-sm"})</p>

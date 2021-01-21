@@ -1,0 +1,26 @@
+@{
+    Layout = "_Layout";
+}
+@model TravelClient.Models.Destination
+
+<h3>Add a new Destination to the list:</h3>
+<hr />
+@using (Html.BeginForm())
+{
+
+    @Html.Label("Country")
+    @Html.TextBoxFor(model => model.Country, new {@required="required"})
+    @Html.Label("City")
+    @Html.TextBoxFor(model => model.City, new {@required="required"})
+    @Html.Label("Rating")
+    @Html.TextBoxFor(model => model.Rating, new {@required="required"})
+    @Html.Label("Review of destination")
+    @Html.TextBoxFor(model => model.Review, new {@required="required"})
+    @Html.Label("Date")
+    @Html.TextBoxFor(model => model.Date, new {@required="required"})
+
+
+    <input type="submit" value="Add Destination" />
+}
+
+<p>@Html.ActionLink("Back to destinations", "Index")</p>

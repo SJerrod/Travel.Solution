@@ -1,18 +1,24 @@
-@* <h1>Details for this destination</h1>
+@* @model TravelClient.Models.Destination
+
+<h1>Details for this destination</h1>
 
 <h3>@Html.DisplayNameFor(model => model.City): @Html.DisplayFor(model => model.City)</h3>
 
-@* <ol>
-@foreach (Destination destination in Model)
+<ol>
+@if (@Model.Count == 0)
+{
+    <p>This Destination No longer exists</p>
+}
+else
 {
     <ul>
-        <li>Country: @destination.Country</li>
-        <li>City: @destination.City</li>
-        <li>Rating: @destination.Rating</li>
-        <li>Review: @destination.Review</li>
-        <li>Date: @destination.Date</li>
+        <li>Country: @model.Country</li>
+        <li>City: @model.City</li>
+        <li>Rating: @model.Rating</li>
+        <li>Review: @model.Review</li>
+        <li>Date: @model.Date</li>
     </ul>
-    <a href="/Destinations/Details/@(destination.DestinationId)"><p>View Details</p></a>
+    <p>@Html.ActionLink("Delete Destination", "Delete", new { id = Model.DestinationId })</p>
     <br>
 }
-</ol> *@ *@
+</ol> *@
